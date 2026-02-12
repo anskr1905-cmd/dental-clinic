@@ -170,7 +170,7 @@
             font-size: 20px;
             display: inline-block;
         }
-        /* form card */
+        /* form card - SIMPLIFIED with only Name & Phone */
         .form-card {
             background: white;
             border-radius: 24px;
@@ -186,9 +186,9 @@
             color: #004080;
         }
         .form-group {
-            margin-bottom: 16px;
+            margin-bottom: 20px;
         }
-        .form-group input, .form-group select {
+        .form-group input {
             width: 100%;
             padding: 14px 18px;
             border: 1px solid #d9e2ec;
@@ -200,18 +200,6 @@
         .form-group input:focus {
             border-color: #004080;
             box-shadow: 0 0 0 3px rgba(0,64,128,0.1);
-        }
-        .checkbox-group {
-            display: flex;
-            align-items: baseline;
-            gap: 10px;
-            font-size: 14px;
-            margin: 20px 0;
-        }
-        .checkbox-group input {
-            width: 18px;
-            height: 18px;
-            accent-color: #004080;
         }
         .phone-input-container {
             display: flex;
@@ -382,7 +370,7 @@
         </div>
     </div>
 
-    <!-- Navigation (simplified) -->
+    <!-- Navigation -->
     <div class="container">
         <div class="main-nav">
             <div class="logo-area">
@@ -398,7 +386,7 @@
         </div>
     </div>
 
-    <!-- HERO SECTION with forced phone +91-9999999999 and Web3Forms -->
+    <!-- HERO SECTION with ONLY Name & Phone fields - NO checkbox, NO redirect -->
     <div class="container">
         <div class="hero">
             <div class="hero-content">
@@ -416,56 +404,57 @@
                 </div>
                 <div style="margin-top:20px;"><i class="fas fa-map-pin"></i> Available across all clinics</div>
             </div>
-            <!-- WEB3FORMS FORM - access_key public, force tick, phone prefilled +91-9999999999 -->
+            
+            <!-- SIMPLIFIED WEB3FORMS FORM - ONLY NAME & PHONE, NO REDIRECT, NO CHECKBOX -->
             <div class="form-card">
                 <h3>Book Your Appointment</h3>
                 <form action="https://api.web3forms.com/submit" method="POST">
-                    <!-- Web3Forms Public Access Key (demo key, replace with yours) -->
+                    <!-- Web3Forms Public Access Key (REPLACE WITH YOUR OWN) -->
                     <input type="hidden" name="access_key" value="bd29dcee-5abf-4af1-947a-42fad05aec02">
-                    <!-- Optional: redirect after submit -->
-                    <input type="hidden" name="redirect" value="https://yourwebsite.com/thankyou.html">
-                    <!-- subject for email -->
-                    <input type="hidden" name="subject" value="New Dental Appointment Request - Local North">
+                    
+                    <!-- NO REDIRECT - removing redirect parameter keeps user on same page with Web3Forms toast message -->
+                    
+                    <!-- Subject line for email -->
+                    <input type="hidden" name="subject" value="New Appointment Request - Local North (Name & Phone Only)">
+                    
+                    <!-- ONLY TWO FIELDS: Name and Phone -->
+                    <div class="form-group">
+                        <input type="text" name="name" placeholder="Your Full Name" required>
+                    </div>
                     
                     <div class="form-group">
-                        <input type="text" name="name" placeholder="Your Name" required>
-                    </div>
-                    <div class="form-group">
-                        <!-- PHONE with forced +91-9999999999 prefilled and editable? We prefill but user can change, requirement says "Phone number +91-9999999999 to be Placed" — we prefill it -->
                         <div class="phone-input-container">
                             <span class="phone-prefix">+91</span>
+                            <!-- Phone prefilled with 9999999999 as requested -->
                             <input type="tel" name="phone" value="9999999999" required>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <select name="treatment" required>
-                            <option value="" disabled selected>Select treatment</option>
-                            <option>Root Canal</option>
-                            <option>Laser</option>
-                            <option>Extraction</option>
-                            <option>Crowns & Veneers</option>
-                            <option>Implants</option>
-                            <option>Aligners</option>
-                        </select>
-                    </div>
-                    <!-- FORCE TICK - checkbox required by Web3Forms -->
-                    <div class="checkbox-group">
-                        <input type="checkbox" name="consent" id="consent" required>
-                        <label for="consent">I agree to the <a href="terms.html" style="color:#004080;">Terms</a> and <a href="privacy.html" style="color:#004080;">Privacy Policy</a> and consent to Clove Dental contacting me.</label>
-                    </div>
-                    <!-- Honeypot -->
+                    
+                    <!-- NO TREATMENT DROPDOWN - removed as per request for only name and phone -->
+                    <!-- NO CONSENT CHECKBOX - completely removed as requested -->
+                    
+                    <!-- Honeypot spam protection -->
                     <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
                     
-                    <button type="submit" class="btn btn-primary btn-block">Request Callback <i class="fas fa-arrow-right"></i></button>
+                    <button type="submit" class="btn btn-primary btn-block">
+                        Request Callback <i class="fas fa-arrow-right"></i>
+                    </button>
+                    
                     <div class="small-note">
                         <i class="fas fa-shield-alt"></i> Free consultation • No spam
                     </div>
-                    <!-- Web3Forms attribution (optional) -->
-                    <p class="web3forms-note" style="text-align:center; margin-top:12px;">Powered by Web3Forms</p>
+                    
+                    <!-- Web3Forms attribution -->
+                    <p class="web3forms-note" style="text-align:center; margin-top:12px;">
+                        Powered by Web3Forms
+                    </p>
                 </form>
-                <!-- additional display of forced number -->
-                <div style="margin-top:16px; font-size:14px; color:#1e2a41; border-top:1px dashed #ccc; padding-top:16px; text-align:center;">
-                    <i class="fas fa-phone"></i> Reach us directly: <strong>+91-9999999999</strong>
+                
+                <!-- Prominently display forced phone number -->
+                <div style="margin-top:20px; font-size:15px; color:#1e2a41; border-top:1px solid #e2edf2; padding-top:20px; text-align:center;">
+                    <i class="fas fa-phone-square" style="color:#004080;"></i> 
+                    <strong style="font-size:18px;">+91-9999999999</strong>
+                    <span style="display:block; font-size:13px; color:#5e6f8c; margin-top:5px;">24/7 Appointment Helpline</span>
                 </div>
             </div>
         </div>
@@ -492,8 +481,10 @@
                 <h2 style="font-size: 32px;">Google Reviews</h2>
                 <div style="display: flex; align-items: center; gap: 12px;">
                     <span style="font-size: 48px; font-weight: 800;">4.9</span>
-                    <div><i class="fas fa-star stars"></i><i class="fas fa-star stars"></i><i class="fas fa-star stars"></i><i class="fas fa-star stars"></i><i class="fas fa-star stars"></i>
-                    <br>Average rating of 4.9</div>
+                    <div>
+                        <i class="fas fa-star stars"></i><i class="fas fa-star stars"></i><i class="fas fa-star stars"></i><i class="fas fa-star stars"></i><i class="fas fa-star stars"></i>
+                        <br>Average rating of 4.9
+                    </div>
                 </div>
             </div>
             <div style="background: #eef6fb; padding: 12px 24px; border-radius: 50px;">
@@ -503,9 +494,21 @@
         
         <!-- Reviews grid short sample -->
         <div class="reviews-grid">
-            <div class="review-card"><div class="stars">★★★★★</div><p>"I had my upper incisor tooth filling and the results are excellent. Thank you Dr.Rashmi."</p><div class="reviewer">– Pooja Gowda</div></div>
-            <div class="review-card"><div class="stars">★★★★★</div><p>"Most hygienic clinic. Dr.Naveen treated my complex filling, painless."</p><div class="reviewer">– Mubeen Ahmed</div></div>
-            <div class="review-card"><div class="stars">★★★★★</div><p>"Dr Tejaswini did painless filling. Thanks to Clove."</p><div class="reviewer">– Shaik Althaf</div></div>
+            <div class="review-card">
+                <div class="stars">★★★★★</div>
+                <p>"I had my upper incisor tooth filling and the results are excellent. Thank you Dr.Rashmi."</p>
+                <div class="reviewer">– Pooja Gowda</div>
+            </div>
+            <div class="review-card">
+                <div class="stars">★★★★★</div>
+                <p>"Most hygienic clinic. Dr.Naveen treated my complex filling, painless."</p>
+                <div class="reviewer">– Mubeen Ahmed</div>
+            </div>
+            <div class="review-card">
+                <div class="stars">★★★★★</div>
+                <p>"Dr Tejaswini did painless filling. Thanks to Clove."</p>
+                <div class="reviewer">– Shaik Althaf</div>
+            </div>
         </div>
     </div>
 
@@ -525,13 +528,33 @@
         </div>
     </div>
 
+    <!-- Safety & Trust Section -->
+    <div class="container">
+        <div style="background: linear-gradient(145deg, #002b5c 0%, #004080 100%); border-radius: 40px; padding: 48px; color: white; margin: 48px 0;">
+            <h2 style="font-size: 36px; margin-bottom: 16px;">Your Safety is Our Priority</h2>
+            <p style="font-size: 20px; margin-bottom: 32px;">Strict Safety Protocols for Your Peace of Mind</p>
+            <div style="display: flex; flex-wrap: wrap; gap: 24px;">
+                <div style="background: rgba(255,255,255,0.1); padding: 24px; border-radius: 24px; flex: 1 1 200px;">
+                    <i class="fas fa-shield-virus" style="font-size: 32px; margin-bottom: 12px;"></i>
+                    <h3 style="font-size: 24px;">10x Safety</h3>
+                    <p>4-step sterilization • Aerosol suction • WHO protocols</p>
+                </div>
+                <div style="background: rgba(255,255,255,0.1); padding: 24px; border-radius: 24px; flex: 1 1 200px;">
+                    <i class="fas fa-laptop-medical" style="font-size: 32px; margin-bottom: 12px;"></i>
+                    <h3 style="font-size: 24px;">Digital Dentistry</h3>
+                    <p>3D scanning • Computer-controlled sterilization</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- FAQ Section -->
     <div class="container" style="margin-top: 64px;">
         <h2 class="section-title">Frequently Asked Questions</h2>
         <div style="max-width: 800px;">
             <div class="faq-item">
                 <div class="faq-question">How can I book an appointment? <i class="fas fa-chevron-down"></i></div>
-                <p style="color: #3e5a70; margin-top: 8px;">Fill the form above, or call us on <strong>+91-9999999999</strong></p>
+                <p style="color: #3e5a70; margin-top: 8px;">Fill the form above, or call us directly on <strong>+91-9999999999</strong></p>
             </div>
             <div class="faq-item">
                 <div class="faq-question">What are your clinic timings? <i class="fas fa-chevron-down"></i></div>
@@ -541,10 +564,14 @@
                 <div class="faq-question">What safety measures do you follow? <i class="fas fa-chevron-down"></i></div>
                 <p style="color: #3e5a70;">10x Safety, 4-step sterilization, Aerosol suction, WHO protocols.</p>
             </div>
+            <div class="faq-item">
+                <div class="faq-question">What modes of payment are accepted? <i class="fas fa-chevron-down"></i></div>
+                <p style="color: #3e5a70;">Cash, Card, UPI (Paytm, PhonePe, Google Pay), and NO COST EMI options.</p>
+            </div>
         </div>
     </div>
 
-    <!-- FOOTER with links to separate pages: privacy, about, contact, terms -->
+    <!-- FOOTER with links to separate pages -->
     <footer class="footer">
         <div class="container">
             <div class="footer-links">
@@ -560,6 +587,7 @@
                     <a href="#">General Dentistry</a>
                     <a href="#">Implants</a>
                     <a href="#">Orthodontics</a>
+                    <a href="#">Cosmetic Dentistry</a>
                 </div>
                 <div class="footer-col">
                     <h4 style="color:white; margin-bottom:20px;">Contact</h4>
@@ -569,11 +597,9 @@
                 </div>
             </div>
             <div class="footer-copyright">
-                © 2025 Clove Dental (demo). All rights reserved. This is a practice website for demonstration.
+                © 2025 Clove Dental (demo). All rights reserved. This is a demonstration website. Phone: +91-9999999999
             </div>
         </div>
     </footer>
-
-    <!-- Tiny script to ensure Web3Forms works; no modifications needed -->
 </body>
 </html>
