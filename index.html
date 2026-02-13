@@ -395,10 +395,10 @@
     <div class="top-bar">
         <div class="container">
             <div class="phone-hl">
-                <i class="fas fa-phone-alt"></i> +91-8178681505 
+                <i class="fas fa-phone-alt"></i> +91- 
             </div>
             <div class="cta-small">
-                <i class="fas fa-calendar-check"></i> Emergency: +91-8178681505
+                <i class="fas fa-calendar-check"></i> Emergency: +91-
             </div>
         </div>
     </div>
@@ -455,8 +455,8 @@
                         <div class="form-group">
                             <div class="phone-input-container">
                                 <span class="phone-prefix">+91</span>
-                                <!-- Phone prefilled with 8178681505 as requested -->
-                                <input type="tel" id="phone" name="phone" value="8178681505" required>
+                                <!-- Phone prefilled with  as requested -->
+                                <input type="tel" id="phone" name="phone" value="" required>
                             </div>
                         </div>
                         
@@ -475,7 +475,7 @@
                     <!-- Display forced phone number -->
                     <div style="margin-top:20px; font-size:15px; color:#1e2a41; border-top:1px solid #e2edf2; padding-top:20px; text-align:center;">
                         <i class="fas fa-phone-square" style="color:#004080;"></i> 
-                        <strong style="font-size:18px;">+91-8178681505</strong>
+                        <strong style="font-size:18px;">+91-</strong>
                         <span style="display:block; font-size:13px; color:#5e6f8c; margin-top:5px;">24/7 Appointment Helpline</span>
                     </div>
                 </div>
@@ -484,7 +484,7 @@
                 <div id="thankyouSection" class="thankyou-message hidden">
                     <i class="fas fa-check-circle"></i>
                     <h4>Thank You!</h4>
-                    <p>Your appointment request has been received.<br>Our team will call you shortly on <strong>+91-8178681505</strong></p>
+                    <p>Your appointment request has been received.<br>Our team will call you shortly on <strong>+91-</strong></p>
                     <button onclick="resetForm()" class="btn-outline-small">
                         <i class="fas fa-plus"></i> New Appointment
                     </button>
@@ -587,7 +587,7 @@
         <div style="max-width: 800px;">
             <div class="faq-item">
                 <div class="faq-question">How can I book an appointment? <i class="fas fa-chevron-down"></i></div>
-                <p style="color: #3e5a70; margin-top: 8px;">Fill the form above, or call us directly on <strong>+91-8178681505</strong></p>
+                <p style="color: #3e5a70; margin-top: 8px;">Fill the form above, or call us directly on <strong>+91-</strong></p>
             </div>
             <div class="faq-item">
                 <div class="faq-question">What are your clinic timings? <i class="fas fa-chevron-down"></i></div>
@@ -624,13 +624,13 @@
                 </div>
                 <div class="footer-col">
                     <h4 style="color:white; margin-bottom:20px;">Contact</h4>
-                    <div class="phone-footer">+91-8178681505</div>
+                    <div class="phone-footer">+91-</div>
                     <p style="color:#cbd5e6;">care@Dentaldental.example</p>
                     <p style="color:#cbd5e6;">600+ clinics across India</p>
                 </div>
             </div>
             <div class="footer-copyright">
-                © 2025 Dental Clinic (demo). All rights reserved. This is a demonstration website. Phone: +91-8178681505
+                © 2025 Dental Clinic (demo). All rights reserved. This is a demonstration website. Phone: +91-
             </div>
         </div>
     </footer>
@@ -691,14 +691,14 @@
                     formSection.classList.add('hidden');
                     thankyouSection.classList.remove('hidden');
                 } else {
-                    alert('Something went wrong. Please try again or call +91-8178681505');
+                    alert('Something went wrong. Please try again or call +91-');
                     // Re-enable submit button
                     submitBtn.disabled = false;
                     submitBtn.innerHTML = 'Request Callback <i class="fas fa-arrow-right"></i>';
                 }
             } catch (error) {
                 console.error('Error:', error);
-                alert('Network error. Please try again or call +91-8178681505');
+                alert('Network error. Please try again or call +91-');
                 // Re-enable submit button
                 submitBtn.disabled = false;
                 submitBtn.innerHTML = 'Request Callback <i class="fas fa-arrow-right"></i>';
@@ -709,7 +709,7 @@
         window.resetForm = function() {
             // Clear form fields
             document.getElementById('name').value = '';
-            document.getElementById('phone').value = '8178681505'; // Reset to default
+            document.getElementById('phone').value = ''; // Reset to default
             
             // Enable submit button
             submitBtn.disabled = false;
