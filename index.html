@@ -1,231 +1,579 @@
-
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SilkRoot · Hair Transplant</title>
-  <!-- Bootstrap 5 + icons & font awesome -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <style>
-    :root {
-      --primary-deep: #0a3a2e;
-      --secondary-warm: #c96e4b;
-      --soft-bg: #f7f3f0;
-      --accent-gold: #e2b48c;
-    }
-    body { background: #ffffff; }
-    .bg-soft { background-color: var(--soft-bg); }
-    .text-deep { color: var(--primary-deep); }
-    .text-copper { color: var(--secondary-warm); }
-    .btn-copper {
-      background: var(--secondary-warm);
-      border: none;
-      color: white;
-      border-radius: 40px;
-      padding: 0.6rem 1.8rem;
-      font-weight: 500;
-    }
-    .btn-copper:hover {
-      background: #b15835;
-      color: white;
-    }
-    .section-title { font-weight: 600; letter-spacing: -0.02em; }
-    .section-title span { color: var(--secondary-warm); border-bottom: 3px solid #e4c2b2; padding-bottom: 4px; }
-    .doctor-card, .review-card { transition: transform 0.2s; border: none; box-shadow: 0 12px 28px -8px rgba(10,58,46,0.08); }
-    .doctor-card:hover, .review-card:hover { transform: scale(1.02); }
-    .scroller-wrapper { overflow-x: auto; white-space: nowrap; padding: 20px 0; scrollbar-width: thin; }
-    .scroller-wrapper::-webkit-scrollbar { height: 8px; }
-    .scroller-wrapper::-webkit-scrollbar-thumb { background: #bcac9f; border-radius: 20px; }
-    .doctor-scroller { display: inline-flex; gap: 30px; flex-wrap: nowrap; }
-    .doctor-scroller .card { width: 260px; display: inline-block; white-space: normal; border: none; border-radius: 40px; }
-    .doc-img-placeholder { width: 130px; height: 130px; border-radius: 50%; margin: 20px auto 10px; background-size: cover; background-position: center; }
-    .avatar-img { width: 48px; height: 48px; border-radius: 50%; object-fit: cover; }
-    .logo-new .logo-deep { color: #0a3a2e; font-weight: 700; }
-    .logo-new .logo-copper { color: #c96e4b; font-weight: 300; }
-
-    .consult-section {
-      background: linear-gradient(145deg, #faf7f4 0%, #ffffff 100%);
-      padding: 48px 0;
-      border-bottom: 1px solid #f0e3db;
-    }
-    .consult-card {
-      background: white;
-      border-radius: 48px;
-      box-shadow: 0 30px 50px -20px rgba(10,58,46,0.25);
-      padding: 2.5rem 2rem;
-      border: 1px solid rgba(201,110,75,0.2);
-    }
-    .consult-icon {
-      background: var(--primary-deep);
-      width: 70px;
-      height: 70px;
-      border-radius: 30px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 32px;
-      color: var(--accent-gold);
-      margin-right: 16px;
-    }
-    .consult-heading { font-size: 2rem; font-weight: 600; color: var(--primary-deep); }
-    .consult-input-group {
-      background: #f9f6f3;
-      border-radius: 70px;
-      border: 1px solid #e2d9d2;
-      padding: 0 8px 0 20px;
-    }
-    .consult-input-group input {
-      border: none;
-      background: transparent;
-      padding: 16px 10px 16px 0;
-      outline: none;
-      width: 200px;
-    }
-    .consult-input-group i { color: var(--secondary-warm); }
-    .consult-btn {
-      background: var(--primary-deep);
-      color: white;
-      font-weight: 600;
-      padding: 0 36px;
-      height: 64px;
-      border-radius: 60px;
-      font-size: 1.2rem;
-      border: none;
-    }
-    .consult-btn:hover { background: #0e4f3f; }
-
-    .hair-transplant-section { padding: 70px 0; background: white; }
-    .transplant-card {
-      border-radius: 48px;
-      background: var(--soft-bg);
-      padding: 2.5rem;
-      box-shadow: 0 20px 40px -15px rgba(10,58,46,0.15);
-    }
-    .transplant-icon {
-      font-size: 2.8rem;
-      color: var(--secondary-warm);
-      background: white;
-      width: 90px;
-      height: 90px;
-      border-radius: 30px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .step-badge {
-      background: var(--primary-deep);
-      color: white;
-      border-radius: 60px;
-      padding: 0.5rem 1.5rem;
-      display: inline-block;
-      margin-bottom: 1rem;
-    }
-    .footer { background: #0f2c26; color: #d0dfda; }
-    .footer a { color: #bccfc8; text-decoration: none; }
-    .footer a:hover { color: white; }
-    .page-link-active { font-weight: 600; color: var(--secondary-warm) !important; border-bottom: 2px solid var(--secondary-warm); }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>General Dentistry Local North | Clove Dental</title>
+    <!-- Font Awesome 6 (Free) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+        body {
+            background-color: #ffffff;
+            color: #1e2a41;
+            line-height: 1.5;
+        }
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        /* Header & top bar */
+        .top-bar {
+            background-color: #004080;
+            color: white;
+            padding: 8px 0;
+            font-size: 14px;
+        }
+        .top-bar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .phone-hl {
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+        .phone-hl i {
+            margin-right: 6px;
+        }
+        .cta-small {
+            background-color: #ffb700;
+            color: #1e2a41;
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        /* Main navigation */
+        .main-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 0;
+            flex-wrap: wrap;
+        }
+        .logo-area {
+            display: flex;
+            align-items: center;
+        }
+        .logo {
+            font-size: 26px;
+            font-weight: 700;
+            color: #004080;
+            letter-spacing: -0.5px;
+        }
+        .logo span {
+            color: #00a3b2;
+        }
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            font-weight: 500;
+            color: #1e2a41;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: #1e2a41;
+        }
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 12px 32px;
+            border-radius: 40px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: 0.2s;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .btn-primary {
+            background-color: #004080;
+            color: white;
+        }
+        .btn-primary:hover {
+            background-color: #002b5c;
+        }
+        .btn-outline {
+            border: 2px solid #004080;
+            color: #004080;
+            background: transparent;
+        }
+        .btn-block {
+            width: 100%;
+            text-align: center;
+        }
+        /* Hero section */
+        .hero {
+            background: linear-gradient(145deg, #f0f7fc 0%, #e6f0f9 100%);
+            border-radius: 24px;
+            padding: 48px 40px;
+            margin: 32px 0;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .hero-content {
+            flex: 1 1 300px;
+        }
+        .hero-badge {
+            background-color: #ffb700;
+            display: inline-block;
+            padding: 6px 18px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+        .hero h1 {
+            font-size: 48px;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 16px;
+            color: #002b5c;
+        }
+        .hero h1 span {
+            color: #00a3b2;
+            display: block;
+            font-size: 52px;
+        }
+        .hero-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px;
+            margin: 32px 0;
+        }
+        .feature-chip {
+            background: white;
+            padding: 8px 22px;
+            border-radius: 40px;
+            font-weight: 600;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .offer-tag {
+            background: #e03a3a;
+            color: white;
+            padding: 10px 24px;
+            border-radius: 40px;
+            font-weight: 700;
+            font-size: 20px;
+            display: inline-block;
+        }
+        /* form card */
+        .form-card {
+            background: white;
+            border-radius: 24px;
+            padding: 32px;
+            box-shadow: 0 20px 40px rgba(0,64,128,0.08);
+            width: 100%;
+            max-width: 380px;
+            margin-left: auto;
+        }
+        .form-card h3 {
+            font-size: 24px;
+            margin-bottom: 24px;
+            color: #004080;
+        }
+        .form-group {
+            margin-bottom: 16px;
+        }
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 14px 18px;
+            border: 1px solid #d9e2ec;
+            border-radius: 40px;
+            font-size: 16px;
+            outline: none;
+            transition: 0.2s;
+        }
+        .form-group input:focus {
+            border-color: #004080;
+            box-shadow: 0 0 0 3px rgba(0,64,128,0.1);
+        }
+        .checkbox-group {
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+            font-size: 14px;
+            margin: 20px 0;
+        }
+        .checkbox-group input {
+            width: 18px;
+            height: 18px;
+            accent-color: #004080;
+        }
+        .phone-input-container {
+            display: flex;
+            align-items: center;
+            border: 1px solid #d9e2ec;
+            border-radius: 40px;
+            background: white;
+        }
+        .phone-prefix {
+            padding: 14px 10px 14px 18px;
+            background: transparent;
+            font-weight: 600;
+            color: #1e2a41;
+            border-right: 1px solid #d9e2ec;
+        }
+        .phone-input-container input {
+            border: none;
+            flex: 1;
+            padding: 14px 18px 14px 12px;
+            border-radius: 40px;
+        }
+        .small-note {
+            font-size: 12px;
+            color: #5e6f8c;
+            margin-top: 16px;
+            text-align: center;
+        }
+        /* service grid */
+        .section-title {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: #002b5c;
+        }
+        .section-sub {
+            font-size: 20px;
+            color: #3a546d;
+            margin-bottom: 40px;
+        }
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 24px;
+            margin: 48px 0;
+        }
+        .service-card {
+            background: #f9fcff;
+            padding: 28px 16px;
+            border-radius: 20px;
+            text-align: center;
+            border: 1px solid #eaf0f6;
+            transition: 0.2s;
+        }
+        .service-card i {
+            font-size: 40px;
+            color: #004080;
+            margin-bottom: 16px;
+        }
+        .service-card h4 {
+            font-size: 20px;
+            font-weight: 600;
+        }
+        /* city grid */
+        .city-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            background: #f3f9ff;
+            padding: 32px;
+            border-radius: 40px;
+            margin: 40px 0;
+        }
+        .city-item {
+            background: white;
+            padding: 16px;
+            border-radius: 16px;
+            font-weight: 600;
+        }
+        .city-item span {
+            display: block;
+            font-size: 14px;
+            color: #004080;
+            font-weight: 400;
+        }
+        /* reviews */
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin: 40px 0;
+        }
+        .review-card {
+            background: white;
+            padding: 24px;
+            border-radius: 24px;
+            box-shadow: 0 8px 18px rgba(0,0,0,0.02);
+            border: 1px solid #e2edf2;
+        }
+        .stars {
+            color: #ffb700;
+            margin-bottom: 12px;
+        }
+        .reviewer {
+            font-weight: 700;
+            margin-top: 16px;
+        }
+        /* FAQ */
+        .faq-item {
+            border-bottom: 1px solid #d0dfeb;
+            padding: 20px 0;
+        }
+        .faq-question {
+            font-weight: 700;
+            font-size: 18px;
+            display: flex;
+            justify-content: space-between;
+        }
+        /* footer */
+        .footer {
+            background: #002b5c;
+            color: white;
+            padding: 60px 0 30px;
+            margin-top: 80px;
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 60px;
+            margin-bottom: 40px;
+        }
+        .footer-col a {
+            color: #cbd5e6;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 10px;
+        }
+        .footer-copyright {
+            border-top: 1px solid #1e4a7a;
+            padding-top: 24px;
+            color: #adc4db;
+        }
+        .phone-footer {
+            font-size: 22px;
+            font-weight: 700;
+            margin: 16px 0;
+        }
+        .web3forms-note {
+            font-size: 12px;
+            color: #718096;
+        }
+        @media (max-width: 768px) {
+            .hero { flex-direction: column; padding: 32px 20px; }
+            .form-card { max-width: 100%; margin-top: 32px; }
+            .nav-links { display: none; }
+        }
+    </style>
 </head>
 <body>
-<header class="bg-white py-3 border-bottom">
-  <div class="container d-flex align-items-center justify-content-between">
-    <div class="d-flex align-items-center gap-2">
-      <div style="background: #0a3a2e; border-radius: 14px; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center;">
-        <i class="fas fa-leaf fs-4" style="color: #e2b48c;"></i>
-      </div>
-      <span class="logo-new fs-2 fw-bold">
-        <span class="logo-deep">Silk</span><span class="logo-copper">Root</span>
-      </span>
-    </div>
-    <div class="d-flex align-items-center gap-4">
-      <nav class="d-none d-md-block">
-        <a href="index.html" class="text-decoration-none mx-2 text-dark page-link-active">Home</a>
-        <a href="about.html" class="text-decoration-none mx-2 text-dark">About</a>
-        <a href="contact.html" class="text-decoration-none mx-2 text-dark">Contact</a>
-        <a href="terms.html" class="text-decoration-none mx-2 text-dark">Terms</a>
-      </nav>
-      <a href="tel:+91999999999" class="btn btn-copper"><i class="fas fa-phone-alt me-2"></i>Call now</a>
-    </div>
-  </div>
-</header>
-
-<!-- consultation form -->
-<section class="consult-section">
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-xl-10">
-        <div class="consult-card">
-          <div class="row align-items-center g-4">
-            <div class="col-lg-5">
-              <div class="d-flex align-items-center">
-                <div class="consult-icon"><i class="fas fa-calendar-check"></i></div>
-                <div><div class="consult-heading">Book consultation</div><div class="consult-sub">Free, no obligation</div></div>
-              </div>
-              <p class="mt-3 text-secondary">Talk to a hair specialist today. We'll get back to you within 30 min.</p>
+    <!-- Top contact bar with forced +91 number display -->
+    <div class="top-bar">
+        <div class="container">
+            <div class="phone-hl">
+                <i class="fas fa-phone-alt"></i> +91- 
             </div>
-            <div class="col-lg-7">
-              <form class="d-flex flex-wrap gap-3 align-items-center justify-content-lg-end" action="https://api.web3forms.com/submit" method="POST">
-                <input type="hidden" name="access_key" value="bbc68695-ea6a-4a7d-86b7-987602ea7eaf">
-                <div class="consult-input-group d-flex align-items-center"><i class="far fa-user me-2"></i><input type="text" name="name" placeholder="Your full name" required></div>
-                <div class="consult-input-group d-flex align-items-center"><i class="fas fa-phone-alt me-2"></i><input type="tel" name="phone" placeholder="Phone number" required></div>
-                <input type="checkbox" name="botcheck" style="display: none;">
-                <button type="submit" class="consult-btn"><i class="fas fa-paper-plane me-2"></i>Send</button>
-              </form>
+            <div class="cta-small">
+                <i class="fas fa-calendar-check"></i> Emergency: +91-
             </div>
-          </div>
         </div>
-      </div>
     </div>
-  </div>
-</section>
 
-<!-- hair transplant section -->
-<section class="hair-transplant-section">
-  <div class="container">
-    <div class="transplant-card">
-      <div class="row align-items-center g-5">
-        <div class="col-lg-5">
-          <span class="step-badge"><i class="fas fa-leaf me-2"></i>Modern hair transplant</span>
-          <h2 class="display-5 fw-semibold mb-3">FUE & DHI <span class="text-copper">techniques</span></h2>
-          <p class="text-secondary fs-5">Follicular unit extraction with zero linear scar. Natural results, minimal downtime.</p>
-          <div class="mt-4">
-            <div class="d-flex gap-4 mb-3"><span><i class="fas fa-check-circle text-copper me-2"></i>No stitches</span><span><i class="fas fa-check-circle text-copper me-2"></i>Local anesthesia</span></div>
-            <div class="d-flex gap-4"><span><i class="fas fa-check-circle text-copper me-2"></i>4000+ grafts/session</span><span><i class="fas fa-check-circle text-copper me-2"></i>Lifetime results</span></div>
-          </div>
+    <!-- Navigation (simplified) -->
+    <div class="container">
+        <div class="main-nav">
+            <div class="logo-area">
+                <div class="logo">CLOVE <span>DENTAL</span></div>
+            </div>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+                <a href="privacy.html">Privacy</a>
+                <a href="terms.html">Terms</a>
+            </div>
         </div>
-        <div class="col-lg-7">
-          <div class="row g-3">
-            <div class="col-md-6"><div class="bg-white p-4 rounded-5 shadow-sm"><div class="transplant-icon mb-4"><i class="fas fa-microscope"></i></div><h4>FUE</h4><p class="text-secondary">Individual follicle extraction.</p></div></div>
-            <div class="col-md-6"><div class="bg-white p-4 rounded-5 shadow-sm"><div class="transplant-icon mb-4"><i class="fas fa-bezier-curve"></i></div><h4>DHI</h4><p class="text-secondary">Direct implantation, no shave.</p></div></div>
-            <div class="col-md-6"><div class="bg-white p-4 rounded-5 shadow-sm"><div class="transplant-icon mb-4"><i class="fas fa-hand-holding-heart"></i></div><h4>Sapphire FUE</h4><p class="text-secondary">Ultra-fine incisions.</p></div></div>
-            <div class="col-md-6"><div class="bg-white p-4 rounded-5 shadow-sm"><div class="transplant-icon mb-4"><i class="fas fa-seedling"></i></div><h4>Long hair FUE</h4><p class="text-secondary">Keep existing length.</p></div></div>
-          </div>
+    </div>
+
+    <!-- HERO SECTION with forced phone +91- and Web3Forms -->
+    <div class="container">
+        <div class="hero">
+            <div class="hero-content">
+                <span class="hero-badge"><i class="fas fa-tooth"></i> All Dental Treatments</span>
+                <h1>UNDER ONE ROOF! <span>GENERAL DENTISTRY</span></h1>
+                <div class="hero-features">
+                    <span class="feature-chip"><i class="fas fa-bolt"></i> RCT</span>
+                    <span class="feature-chip"><i class="fas fa-light-emergency"></i> Laser</span>
+                    <span class="feature-chip"><i class="fas fa-teeth"></i> Extraction</span>
+                    <span class="feature-chip"><i class="fas fa-crown"></i> Crowns</span>
+                </div>
+                <div style="display: flex; align-items: baseline; gap: 20px; flex-wrap: wrap;">
+                    <span style="font-weight:800; font-size:26px;">NO COST EMI</span>
+                    <span class="offer-tag">UPTO 20% OFF*</span>
+                </div>
+                <div style="margin-top:20px;"><i class="fas fa-map-pin"></i> Available across all clinics</div>
+            </div>
+            <!-- WEB3FORMS FORM - access_key public, force tick, phone prefilled +91- -->
+            <div class="form-card">
+                <h3>Book Your Appointment</h3>
+                <form action="https://api.web3forms.com/submit" method="POST">
+                    <!-- Web3Forms Public Access Key (demo key, replace with yours) -->
+                    <input type="hidden" name="access_key" value="bbc68695-ea6a-4a7d-86b7-987602ea7eaf">
+                    <!-- Optional: redirect after submit -->
+                    <input type="hidden" name="redirect" value="https://yourwebsite.com/thankyou.html">
+                    <!-- subject for email -->
+                    <input type="hidden" name="subject" value="New Dental Appointment Request - Local North">
+                    
+                    <div class="form-group">
+                        <input type="text" name="name" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <!-- PHONE with forced +91- prefilled and editable? We prefill but user can change, requirement says "Phone number +91- to be Placed" — we prefill it -->
+                        <div class="phone-input-container">
+                            <span class="phone-prefix">+91</span>
+                            <input type="tel" name="phone" value="" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <select name="treatment" required>
+                            <option value="" disabled selected>Select treatment</option>
+                            <option>Root Canal</option>
+                            <option>Laser</option>
+                            <option>Extraction</option>
+                            <option>Crowns & Veneers</option>
+                            <option>Implants</option>
+                            <option>Aligners</option>
+                        </select>
+                    </div>
+                    <!-- FORCE TICK - checkbox required by Web3Forms -->
+                    <div class="checkbox-group">
+                        <input type="checkbox" name="consent" id="consent" required>
+                        <label for="consent">I agree to the <a href="terms.html" style="color:#004080;">Terms</a> and <a href="privacy.html" style="color:#004080;">Privacy Policy</a> and consent to Clove Dental contacting me.</label>
+                    </div>
+                    <!-- Honeypot -->
+                    <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+                    
+                    <button type="submit" class="btn btn-primary btn-block">Request Callback <i class="fas fa-arrow-right"></i></button>
+                    <div class="small-note">
+                        <i class="fas fa-shield-alt"></i> Free consultation • No spam
+                    </div>
+                    <!-- Web3Forms attribution (optional) -->
+                    <p class="web3forms-note" style="text-align:center; margin-top:12px;">Powered by Web3Forms</p>
+                </form>
+                <!-- additional display of forced number -->
+                <div style="margin-top:16px; font-size:14px; color:#1e2a41; border-top:1px dashed #ccc; padding-top:16px; text-align:center;">
+                    <i class="fas fa-phone"></i> Reach us directly: <strong>+91-</strong>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
-</section>
 
-<!-- treatments, reviews, doctors, why choose, faq (abbreviated for brevity - same as original but we keep main flow) -->
-<section class="container my-5"><h2 class="section-title"><span>Advanced</span> treatments</h2><div class="row">...(same cards as before)...</div></section>
-<section class="bg-soft py-5"><h2 class="section-title"><span>Real</span> reviews</h2>...(review scrollers)...</section>
-<section class="container my-5"><h2 class="section-title"><span>Meet our</span> doctors</h2>...(doctor scrollers)...</section>
-<section class="bg-white py-5"><h2 class="section-title"><span>Why choose</span> SilkRoot?</h2>...(4 columns)...</section>
-<section class="bg-soft py-5"><h2 class="section-title"><span>Frequently</span> asked questions</h2>...(accordion)...</section>
-
-<footer class="footer pt-5 pb-3">
-  <div class="container">
-    <div class="row gy-4">
-      <div class="col-md-4"><div class="fw-bold fs-3"><span style="color:#e2b48c;">Silk</span><span style="color:#c96e4b;">Root</span></div><p class="my-3 small">Hair restoration, rooted in care & science.</p></div>
-      <div class="col-md-2"><h5 class="text-white">Links</h5><ul class="list-unstyled"><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="contact.html">Contact</a></li><li><a href="terms.html">Terms</a></li></ul></div>
-      <div class="col-md-3"><h5 class="text-white">Contact</h5><ul class="list-unstyled"><li><a href="tel:+91999999999">+91-999999999</a></li><li>hello@silkroot.com</li></ul></div>
+    <!-- Key Treatment Services -->
+    <div class="container">
+        <h2 class="section-title">Our Key Treatment Services Near You</h2>
+        <div class="section-sub">Top Treatments for a Healthier Smile</div>
+        <div class="service-grid">
+            <div class="service-card"><i class="fas fa-teeth-open"></i><h4>Dental Implants</h4></div>
+            <div class="service-card"><i class="fas fa-align-left"></i><h4>Invisalign & Aligners</h4></div>
+            <div class="service-card"><i class="fas fa-smile"></i><h4>Full Mouth Rehabilitation</h4></div>
+            <div class="service-card"><i class="fas fa-grin-stars"></i><h4>Smile Makeovers</h4></div>
+            <div class="service-card"><i class="fas fa-bolt"></i><h4>Root Canal Treatment</h4></div>
+            <div class="service-card"><i class="fas fa-crown"></i><h4>Crowns & Veneers</h4></div>
+        </div>
     </div>
-    <hr><div class="text-center small text-white-50">© 2025 SilkRoot</div>
-  </div>
-</footer>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Google reviews summary -->
+    <div class="container">
+        <div style="display: flex; align-items: center; gap: 20px; flex-wrap: wrap; justify-content: space-between; background: #fbfefe; padding: 32px; border-radius: 48px;">
+            <div>
+                <h2 style="font-size: 32px;">Google Reviews</h2>
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <span style="font-size: 48px; font-weight: 800;">4.9</span>
+                    <div><i class="fas fa-star stars"></i><i class="fas fa-star stars"></i><i class="fas fa-star stars"></i><i class="fas fa-star stars"></i><i class="fas fa-star stars"></i>
+                    <br>Average rating of 4.9</div>
+                </div>
+            </div>
+            <div style="background: #eef6fb; padding: 12px 24px; border-radius: 50px;">
+                <i class="fas fa-check-circle" style="color:#00a3b2;"></i> 3 Million+ Happy Patients
+            </div>
+        </div>
+        
+        <!-- Reviews grid short sample -->
+        <div class="reviews-grid">
+            <div class="review-card"><div class="stars">★★★★★</div><p>"I had my upper incisor tooth filling and the results are excellent. Thank you Dr.Rashmi."</p><div class="reviewer">– Pooja Gowda</div></div>
+            <div class="review-card"><div class="stars">★★★★★</div><p>"Most hygienic clinic. Dr.Naveen treated my complex filling, painless."</p><div class="reviewer">– Mubeen Ahmed</div></div>
+            <div class="review-card"><div class="stars">★★★★★</div><p>"Dr Tejaswini did painless filling. Thanks to Clove."</p><div class="reviewer">– Shaik Althaf</div></div>
+        </div>
+    </div>
+
+    <!-- Clinics across India -->
+    <div class="container">
+        <h2 class="section-title">Find Us Across India</h2>
+        <div class="section-sub">600+ clinics • 23 cities</div>
+        <div class="city-grid">
+            <div class="city-item">Delhi/NCR <span>190 Clinics</span></div>
+            <div class="city-item">Punjab <span>27 Clinics</span></div>
+            <div class="city-item">Bengaluru <span>110 Clinics</span></div>
+            <div class="city-item">Chennai <span>59 Clinics</span></div>
+            <div class="city-item">Hyderabad <span>76 Clinics</span></div>
+            <div class="city-item">Mumbai <span>40 Clinics</span></div>
+            <div class="city-item">Pune <span>76 Clinics</span></div>
+            <div class="city-item">Ahemdabad <span>27 Clinics</span></div>
+        </div>
+    </div>
+
+    <!-- FAQ Section -->
+    <div class="container" style="margin-top: 64px;">
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        <div style="max-width: 800px;">
+            <div class="faq-item">
+                <div class="faq-question">How can I book an appointment? <i class="fas fa-chevron-down"></i></div>
+                <p style="color: #3e5a70; margin-top: 8px;">Fill the form above, or call us on <strong>+91-</strong></p>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">What are your clinic timings? <i class="fas fa-chevron-down"></i></div>
+                <p style="color: #3e5a70;">10 AM to 7 PM every day, including weekends.</p>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">What safety measures do you follow? <i class="fas fa-chevron-down"></i></div>
+                <p style="color: #3e5a70;">10x Safety, 4-step sterilization, Aerosol suction, WHO protocols.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER with links to separate pages: privacy, about, contact, terms -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-links">
+                <div class="footer-col">
+                    <h4 style="color:white; margin-bottom:20px;">Clove Dental</h4>
+                    <a href="about.html">About Us</a>
+                    <a href="contact.html">Contact</a>
+                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="terms.html">Terms of Use</a>
+                </div>
+                <div class="footer-col">
+                    <h4 style="color:white; margin-bottom:20px;">Services</h4>
+                    <a href="#">General Dentistry</a>
+                    <a href="#">Implants</a>
+                    <a href="#">Orthodontics</a>
+                </div>
+                <div class="footer-col">
+                    <h4 style="color:white; margin-bottom:20px;">Contact</h4>
+                    <div class="phone-footer">+91-</div>
+                    <p style="color:#cbd5e6;">care@clovedental.example</p>
+                    <p style="color:#cbd5e6;">600+ clinics across India</p>
+                </div>
+            </div>
+            <div class="footer-copyright">
+                © 2025 Clove Dental (demo). All rights reserved. This is a practice website for demonstration.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Tiny script to ensure Web3Forms works; no modifications needed -->
 </body>
 </html>
