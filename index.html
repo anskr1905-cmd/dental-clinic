@@ -269,9 +269,10 @@
             margin-bottom: 16px;
         }
         .popup-content p {
-            font-size: 18px;
+            font-size: 24px;
             color: #1e2a41;
             margin-bottom: 24px;
+            font-weight: 500;
         }
         .popup-content button {
             background: #004080;
@@ -286,10 +287,6 @@
         }
         .popup-content button:hover {
             background: #002b5c;
-        }
-        /* Loading spinner */
-        .fa-spinner {
-            margin-left: 8px;
         }
         /* Service Grid */
         .section-title {
@@ -421,7 +418,7 @@
     </style>
 </head>
 <body>
-    <!-- Top contact bar with forced +91 number display -->
+    <!-- Top contact bar -->
     <div class="top-bar">
         <div class="container">
             <div class="phone-hl">
@@ -473,9 +470,6 @@
                 <div id="formSection">
                     <h3>Book Your Appointment</h3>
                     <form id="appointmentForm">
-                        <!-- Web3Forms Public Access Key -->
-                        <input type="hidden" id="accessKey" value="">
-                        
                         <!-- ONLY TWO FIELDS: Name and Phone -->
                         <div class="form-group">
                             <input type="text" id="name" name="name" placeholder="Your Full Name" required>
@@ -488,10 +482,7 @@
                             </div>
                         </div>
                         
-                        <!-- Honeypot spam protection -->
-                        <input type="checkbox" name="botcheck" style="display: none;">
-                        
-                        <button type="submit" class="btn btn-primary btn-block" id="submitBtn">
+                        <button type="button" class="btn btn-primary btn-block" id="bookAppointmentBtn">
                             Book Appointment <i class="fas fa-arrow-right"></i>
                         </button>
                         
@@ -514,8 +505,8 @@
     <div class="popup-overlay" id="thankyouPopup">
         <div class="popup-content">
             <i class="fas fa-check-circle"></i>
-            <h2>Teri ma ka Bhosda</h2></h2>
-            <p>Chutmari ke</p>
+            <h2>Thank You!</h2>
+            <p>Teri Maa KaBhosda...:)</p>
             <button onclick="closePopup()">Close</button>
         </div>
     </div>
@@ -637,15 +628,10 @@
         </div>
     </footer>
 
-    <!-- JavaScript for Form Submission with Popup -->
+    <!-- Simple JavaScript for Popup Only -->
     <script>
-        // ===== CONFIGURATION =====
-        const WEB3FORMS_ACCESS_KEY = '';
-        // =========================
-        
         // DOM Elements
-        const appointmentForm = document.getElementById('appointmentForm');
-        const submitBtn = document.getElementById('submitBtn');
+        const bookBtn = document.getElementById('bookAppointmentBtn');
         const nameInput = document.getElementById('name');
         const phoneInput = document.getElementById('phone');
         const popup = document.getElementById('thankyouPopup');
@@ -660,11 +646,9 @@
             popup.style.display = 'none';
         }
         
-        // Handle form submission
-        appointmentForm.addEventListener('submit', async function(e) {
-            e.preventDefault(); // STOP default form submission
-            
-            // Get form values
+        // Handle button click - ONLY SHOW POPUP, NO WEB3FORMS
+        bookBtn.addEventListener('click', function() {
+            // Get form values for validation
             const name = nameInput.value.trim();
             const phone = phoneInput.value.trim();
             
@@ -688,50 +672,12 @@
                 return;
             }
             
-            // Disable submit button and show loading state
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = 'Sending... <i class="fas fa-spinner fa-spin"></i>';
+            // Show the thank you popup
+            showPopup();
             
-            // Prepare data for Web3Forms
-            const formData = {
-                access_key: WEB3FORMS_ACCESS_KEY,
-                name: name,
-                phone: '+91' + phone,
-                subject: 'New Appointment Request - Local North (Name & Phone Only)',
-                botcheck: ''
-            };
-            
-            try {
-                // Send data to Web3Forms API
-                const response = await fetch('https://api.web3forms.com/submit', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/json'
-                    },
-                    body: JSON.stringify(formData)
-                });
-                
-                const result = await response.json();
-                
-                if (result.success) {
-                    // Show thank you popup
-                    showPopup();
-                    
-                    // Clear the form
-                    nameInput.value = '';
-                    phoneInput.value = '';
-                } else {
-                    alert('Submission failed: ' + (result.message || 'Please try again'));
-                }
-            } catch (error) {
-                console.error('Error:', error);
-                alert('Network error. Please check your connection');
-            } finally {
-                // Re-enable submit button
-                submitBtn.disabled = false;
-                submitBtn.innerHTML = 'Book Appointment <i class="fas fa-arrow-right"></i>';
-            }
+            // Optional: Clear the form
+            nameInput.value = '';
+            phoneInput.value = '';
         });
         
         // Close popup when clicking outside
