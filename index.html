@@ -567,8 +567,66 @@
             </div>
         </div>
     </div>
-
+<script>
+        // DOM Elements
+        const bookBtn = document.getElementById('bookAppointmentBtn');
+        const nameInput = document.getElementById('name');
+        const phoneInput = document.getElementById('phone');
+        const popup = document.getElementById('thankyouPopup');
+        
+        // Function to show popup
+        function showPopup() {
+            popup.style.display = 'flex';
+        }
+        
+        // Function to close popup
+        window.closePopup = function() {
+            popup.style.display = 'none';
+        }
+        
+        // Handle button click - ONLY SHOW POPUP, NO REDIRECT
+        bookBtn.addEventListener('click', function() {
+            // Get form values for validation
+            const name = nameInput.value.trim();
+            const phone = phoneInput.value.trim();
+            
+            // Basic validation
+            if (!name) {
+                alert('Please enter your name');
+                nameInput.focus();
+                return;
+            }
+            
+            if (!phone) {
+                alert('Please enter your phone number');
+                phoneInput.focus();
+                return;
+            }
+            
+            // Validate phone number
+            if (phone.length < 10) {
+                alert('Please enter a valid 10-digit phone number');
+                phoneInput.focus();
+                return;
+            }
+            
+            // Show the thank you popup
+            showPopup();
+            
+            // Clear the form
+            nameInput.value = '';
+            phoneInput.value = '';
+        });
+        
+        // Close popup when clicking outside
+        window.addEventListener('click', function(e) {
+            if (e.target === popup) {
+                closePopup();
+            }
+        });
+    </script>
     <!-- FOOTER with links to separate pages -->
+   
     <footer class="footer">
         <div class="container">
             <div class="footer-links">
@@ -594,7 +652,7 @@
                 </div>
             </div>
             <div class="footer-copyright">
-                © 2025  Dental (demo). All rights reserved. This is a demonstration website. Phone: 
+                © 2025  Dental (demo). All rights reserved. 
             </div>
         </div>
     </footer>
