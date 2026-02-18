@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>General Dentistry Local North |  Dental</title>
+    <title>General Dentistry Local North | Dental</title>
     <!-- Font Awesome 6 (Free) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
@@ -170,7 +170,7 @@
             font-size: 20px;
             display: inline-block;
         }
-        /* form card - SIMPLIFIED with only Name & Phone */
+        /* Form Card */
         .form-card {
             background: white;
             border-radius: 24px;
@@ -226,6 +226,72 @@
             color: #5e6f8c;
             margin-top: 16px;
             text-align: center;
+        }
+        /* Custom Popup Styles */
+        .popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        .popup-content {
+            background: white;
+            padding: 40px;
+            border-radius: 24px;
+            text-align: center;
+            max-width: 400px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            animation: popupFadeIn 0.3s ease;
+        }
+        @keyframes popupFadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        .popup-content i {
+            font-size: 80px;
+            color: #00a3b2;
+            margin-bottom: 20px;
+        }
+        .popup-content h2 {
+            font-size: 32px;
+            color: #004080;
+            margin-bottom: 16px;
+        }
+        .popup-content p {
+            font-size: 18px;
+            color: #1e2a41;
+            margin-bottom: 24px;
+            line-height: 1.5;
+        }
+        .popup-content button {
+            background: #004080;
+            color: white;
+            border: none;
+            padding: 14px 32px;
+            border-radius: 40px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .popup-content button:hover {
+            background: #002b5c;
+        }
+        /* Loading spinner */
+        .fa-spinner {
+            margin-left: 8px;
         }
         /* service grid */
         .section-title {
@@ -346,10 +412,6 @@
             font-weight: 700;
             margin: 16px 0;
         }
-        .web3forms-note {
-            font-size: 12px;
-            color: #718096;
-        }
         @media (max-width: 768px) {
             .hero { flex-direction: column; padding: 32px 20px; }
             .form-card { max-width: 100%; margin-top: 32px; }
@@ -358,11 +420,11 @@
     </style>
 </head>
 <body>
-    <!-- Top contact bar with forced +91 number display -->
+    <!-- Top contact bar -->
     <div class="top-bar">
         <div class="container">
             <div class="phone-hl">
-                <i class="fas fa-phone-alt"></i>  
+                <i class="fas fa-phone-alt"></i> 
             </div>
             <div class="cta-small">
                 <i class="fas fa-calendar-check"></i> Emergency: 
@@ -386,7 +448,7 @@
         </div>
     </div>
 
-    <!-- HERO SECTION with ONLY Name & Phone fields - NO checkbox, NO redirect -->
+    <!-- HERO SECTION with Web3Forms + Popup -->
     <div class="container">
         <div class="hero">
             <div class="hero-content">
@@ -407,53 +469,55 @@
             
             <div class="form-card">
                 <h3>Book Your Appointment</h3>
-                <form action="https://api.web3forms.com/submit" method="POST">
-                    <!-- Web3Forms Public Access Key (REPLACE WITH YOUR OWN) -->
-                    <input type="hidden" name="access_key" value="bbc68695-ea6a-4a7d-86b7-987602ea7eaf">
-                    
-                    <!-- NO REDIRECT - removing redirect parameter keeps user on same page with Web3Forms toast message -->
+                <form id="appointmentForm">
+                    <!-- Web3Forms Public Access Key (Your existing key) -->
+                    <input type="hidden" id="accessKey" value="bbc68695-ea6a-4a7d-86b7-987602ea7eaf">
                     
                     <!-- Subject line for email -->
-                    <input type="hidden" name="subject" value="New Appointment Request - Local North (Name & Phone Only)">
+                    <input type="hidden" id="subject" value="New Appointment Request - Local North (Name & Phone Only)">
                     
                     <!-- ONLY TWO FIELDS: Name and Phone -->
                     <div class="form-group">
-                        <input type="text" name="name" placeholder="Your Full Name" required>
+                        <input type="text" id="name" name="name" placeholder="Your Full Name" required>
                     </div>
                     
                     <div class="form-group">
                         <div class="phone-input-container">
                             <span class="phone-prefix">+91</span>
-                            <!-- Phone prefilled with 9999999999 as requested -->
-                            <input type="tel" name="phone" placeholder="Phone Number" required>
+                            <input type="tel" id="phone" name="phone" placeholder="Phone Number" required>
                         </div>
                     </div>
                     
-                    <!-- NO TREATMENT DROPDOWN - removed as per request for only name and phone -->
-                    <!-- NO CONSENT CHECKBOX - completely removed as requested -->
+                    <!-- NO TICKBOX - completely removed as requested -->
                     
                     <!-- Honeypot spam protection -->
-                    <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+                    <input type="checkbox" name="botcheck" style="display: none;">
                     
-                    <button type="submit" class="btn btn-primary btn-block">
-                        Request Callback <i class="fas fa-arrow-right"></i>
+                    <button type="submit" id="submitBtn" class="btn btn-primary btn-block">
+                        Book Appointment <i class="fas fa-arrow-right"></i>
                     </button>
                     
                     <div class="small-note">
                         <i class="fas fa-shield-alt"></i> Free consultation • No spam
                     </div>
-                    
-                    <p class="web3forms-note" style="text-align:center; margin-top:12px;">
-                    </p>
                 </form>
                 
-                <!-- Prominently display forced phone number -->
                 <div style="margin-top:20px; font-size:15px; color:#1e2a41; border-top:1px solid #e2edf2; padding-top:20px; text-align:center;">
                     <i class="fas fa-phone-square" style="color:#004080;"></i> 
                     <strong style="font-size:18px;"></strong>
                     <span style="display:block; font-size:13px; color:#5e6f8c; margin-top:5px;">24/7 Appointment Helpline</span>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <!-- Custom Popup for Thank You Message -->
+    <div class="popup-overlay" id="thankyouPopup">
+        <div class="popup-content">
+            <i class="fas fa-check-circle"></i>
+            <h2>Thank You!</h2>
+            <p>Thank you, your appointment has been booked</p>
+            <button onclick="closePopup()">Close</button>
         </div>
     </div>
 
@@ -489,7 +553,6 @@
             </div>
         </div>
         
-        <!-- Reviews grid short sample -->
         <div class="reviews-grid">
             <div class="review-card">
                 <div class="stars">★★★★★</div>
@@ -525,7 +588,7 @@
         </div>
     </div>
 
-    <!-- Safety & Trust Section -->
+    <!-- Safety Section -->
     <div class="container">
         <div style="background: linear-gradient(145deg, #002b5c 0%, #004080 100%); border-radius: 40px; padding: 48px; color: white; margin: 48px 0;">
             <h2 style="font-size: 36px; margin-bottom: 16px;">Your Safety is Our Priority</h2>
@@ -551,7 +614,7 @@
         <div style="max-width: 800px;">
             <div class="faq-item">
                 <div class="faq-question">How can I book an appointment? <i class="fas fa-chevron-down"></i></div>
-                <p style="color: #3e5a70; margin-top: 8px;">Fill the form above, or call us directly on <strong></strong></p>
+                <p style="color: #3e5a70; margin-top: 8px;">Fill the form above, or call us directly</p>
             </div>
             <div class="faq-item">
                 <div class="faq-question">What are your clinic timings? <i class="fas fa-chevron-down"></i></div>
@@ -561,18 +624,49 @@
                 <div class="faq-question">What safety measures do you follow? <i class="fas fa-chevron-down"></i></div>
                 <p style="color: #3e5a70;">10x Safety, 4-step sterilization, Aerosol suction, WHO protocols.</p>
             </div>
-            <div class="faq-item">
-                <div class="faq-question">What modes of payment are accepted? <i class="fas fa-chevron-down"></i></div>
-                <p style="color: #3e5a70;">Cash, Card, UPI (Paytm, PhonePe, Google Pay), and NO COST EMI options.</p>
-            </div>
         </div>
     </div>
-<script>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-links">
+                <div class="footer-col">
+                    <h4 style="color:white; margin-bottom:20px;">Dental</h4>
+                    <a href="about.html">About Us</a>
+                    <a href="contact.html">Contact</a>
+                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="terms.html">Terms of Use</a>
+                </div>
+                <div class="footer-col">
+                    <h4 style="color:white; margin-bottom:20px;">Services</h4>
+                    <a href="#">General Dentistry</a>
+                    <a href="#">Implants</a>
+                    <a href="#">Orthodontics</a>
+                </div>
+                <div class="footer-col">
+                    <h4 style="color:white; margin-bottom:20px;">Contact</h4>
+                    <div class="phone-footer"></div>
+                    <p style="color:#cbd5e6;">care@dental.example</p>
+                    <p style="color:#cbd5e6;">600+ clinics across India</p>
+                </div>
+            </div>
+            <div class="footer-copyright">
+                © 2025 Dental (demo). All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Web3Forms AJAX Submission + Popup - NO REDIRECT -->
+    <script>
         // DOM Elements
-        const bookBtn = document.getElementById('bookAppointmentBtn');
+        const appointmentForm = document.getElementById('appointmentForm');
+        const submitBtn = document.getElementById('submitBtn');
         const nameInput = document.getElementById('name');
         const phoneInput = document.getElementById('phone');
         const popup = document.getElementById('thankyouPopup');
+        const accessKey = document.getElementById('accessKey').value;
+        const subject = document.getElementById('subject').value;
         
         // Function to show popup
         function showPopup() {
@@ -584,9 +678,11 @@
             popup.style.display = 'none';
         }
         
-        // Handle button click - ONLY SHOW POPUP, NO REDIRECT
-        bookBtn.addEventListener('click', function() {
-            // Get form values for validation
+        // Handle form submission with AJAX (no redirect)
+        appointmentForm.addEventListener('submit', async function(e) {
+            e.preventDefault(); // PREVENT PAGE RELOAD/REDIRECT
+            
+            // Get form values
             const name = nameInput.value.trim();
             const phone = phoneInput.value.trim();
             
@@ -610,12 +706,50 @@
                 return;
             }
             
-            // Show the thank you popup
-            showPopup();
+            // Disable submit button and show loading state
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = 'Booking... <i class="fas fa-spinner fa-spin"></i>';
             
-            // Clear the form
-            nameInput.value = '';
-            phoneInput.value = '';
+            // Prepare data for Web3Forms
+            const formData = {
+                access_key: accessKey,
+                name: name,
+                phone: '+91' + phone,
+                subject: subject,
+                botcheck: ''
+            };
+            
+            try {
+                // Send data to Web3Forms API (AJAX - NO REDIRECT)
+                const response = await fetch('https://api.web3forms.com/submit', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    // Show thank you popup
+                    showPopup();
+                    
+                    // Clear the form
+                    nameInput.value = '';
+                    phoneInput.value = '';
+                } else {
+                    alert('Submission failed: ' + (result.message || 'Please try again'));
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Network error. Please check your connection');
+            } finally {
+                // Re-enable submit button
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = 'Book Appointment <i class="fas fa-arrow-right"></i>';
+            }
         });
         
         // Close popup when clicking outside
@@ -625,36 +759,5 @@
             }
         });
     </script>
-    <!-- FOOTER with links to separate pages -->
-   
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-links">
-                <div class="footer-col">
-                    <h4 style="color:white; margin-bottom:20px;"> Dental</h4>
-                    <a href="about.html">About Us</a>
-                    <a href="contact.html">Contact</a>
-                    <a href="privacy.html">Privacy Policy</a>
-                    <a href="terms.html">Terms of Use</a>
-                </div>
-                <div class="footer-col">
-                    <h4 style="color:white; margin-bottom:20px;">Services</h4>
-                    <a href="#">General Dentistry</a>
-                    <a href="#">Implants</a>
-                    <a href="#">Orthodontics</a>
-                    <a href="#">Cosmetic Dentistry</a>
-                </div>
-                <div class="footer-col">
-                    <h4 style="color:white; margin-bottom:20px;">Contact</h4>
-                    <div class="phone-footer"></div>
-                    <p style="color:#cbd5e6;">care@dental.example</p>
-                    <p style="color:#cbd5e6;">600+ clinics across India</p>
-                </div>
-            </div>
-            <div class="footer-copyright">
-                © 2025  Dental (demo). All rights reserved. 
-            </div>
-        </div>
-    </footer>
 </body>
 </html>
